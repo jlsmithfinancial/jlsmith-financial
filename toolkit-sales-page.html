@@ -354,7 +354,26 @@
   </div>
 </section>
 
-<!-- FAQ -->
+<style>
+  /* This hides the answers automatically */
+  .faq-a { 
+    display: none; 
+    padding: 10px 0; 
+  }
+
+  /* This tells the browser: "If the item is 'active', show the answer" */
+  .faq-item.active .faq-a { 
+    display: block; 
+  }
+
+  /* This makes the question look clickable (the hand cursor) */
+  .faq-q { 
+    cursor: pointer; 
+    font-weight: bold;
+    padding: 10px 0;
+  }
+</style>
+
 <section class="faq">
   <div class="faq-inner">
     <h2>Questions & Answers</h2>
@@ -372,7 +391,7 @@
     </div>
     <div class="faq-item">
       <div class="faq-q">Is there a refund policy?</div>
-      <div class="faq-a">Yes. If you complete the guide, use the template for 30 days, and feel it wasn't worth it — email <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7812141d0f110b0b38111b14170d1c561b1715">[email&#160;protected]</a> and I'll refund you in full. No questions asked. I'm confident you'll find value in it.</div>
+      <div class="faq-a">Yes. If you complete the guide, use the template for 30 days, and feel it wasn't worth it — email <a href="mailto:support@example.com">[email protected]</a> and I'll refund you in full. No questions asked. I'm confident you'll find value in it.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q">What if I want more personalized help?</div>
@@ -380,6 +399,21 @@
     </div>
   </div>
 </section>
+
+<script>
+  // This looks for all your questions
+  const questions = document.querySelectorAll('.faq-q');
+
+  questions.forEach(question => {
+    question.addEventListener('click', () => {
+      // This finds the "faq-item" box that holds the question you clicked
+      const item = question.parentElement;
+      
+      // This toggles the 'active' label on and off
+      item.classList.toggle('active');
+    });
+  });
+</script>
 
 <!-- FINAL CTA -->
 <section class="final-cta" id="buy">
