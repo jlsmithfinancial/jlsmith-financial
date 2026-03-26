@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Debt Free Blueprint — Budget Mastery Toolkit | JL Smith Financial</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #faf7f2; --warm-white: #fffef9; --sand: #e8ddd0; --tan: #c9b8a3;
+      --brown: #6b4f3a; --dark: #2b1f16; --accent: #c2773a; --accent-light: #e8a96a;
+      --green: #4a7c59; --green-l: #e0ede4; --text: #3d2e24; --text-light: #7a6457;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 5%;
+      background: rgba(250,247,242,0.95); backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--sand);
+    }
+    .nav-logo { font-family: 'Lora', serif; font-size: 1.1rem; color: var(--brown); text-decoration: none; }
+    .nav-logo span { color: var(--accent); }
+    .nav-back { font-size: 0.85rem; color: var(--text-light); text-decoration: none; display: flex; align-items: center; gap: 0.4rem; transition: color 0.2s; }
+    .nav-back:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      padding: 7rem 5% 5rem;
+      background: var(--dark);
+      position: relative; overflow: hidden;
+      text-align: center;
+    }
+    .hero::before {
+      content: ''; position: absolute;
+      top: -100px; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(194,119,58,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--accent-light);
+      margin-bottom: 1.5rem;
+      background: rgba(194,119,58,0.15);
+      padding: 0.4rem 1rem; border-radius: 100px;
+      border: 1px solid rgba(194,119,58,0.3);
+    }
+    .hero h1 {
+      font-family: 'Lora', serif;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      color: white; line-height: 1.15; margin-bottom: 1.2rem;
+    }
+    .hero h1 em { font-style: italic; color: var(--accent-light); }
+    .hero-sub {
+      font-size: 1.05rem; color: rgba(201,184,163,0.85); line-height: 1.7;
+      max-width: 560px; margin: 0 auto 2.5rem;
+    }
+    .price-badge {
+      display: inline-flex; flex-direction: column; align-items: center;
+      background: var(--accent); border-radius: 20px;
+      padding: 1.2rem 2.5rem; margin-bottom: 2rem;
+      box-shadow: 0 8px 40px rgba(194,119,58,0.4);
+    }
+    .price-was { font-size: 0.8rem; color: rgba(255,255,255,0.6); text-decoration: line-through; }
+    .price-now { font-family: 'Lora', serif; font-size: 3rem; color: white; font-weight: 600; line-height: 1; }
+    .price-label { font-size: 0.78rem; color: rgba(255,255,255,0.7); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 0.2rem; }
+    .btn-buy {
+      display: inline-block;
+      background: white; color: var(--dark);
+      padding: 1rem 2.5rem; border-radius: 100px;
+      font-weight: 700; font-size: 1rem; text-decoration: none;
+      transition: all 0.25s;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .btn-buy:hover { background: var(--cream); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.25); }
+    .hero-note { font-size: 0.8rem; color: rgba(201,184,163,0.6); margin-top: 1rem; }
+
+    /* WHAT'S INSIDE */
+    .inside {
+      padding: 6rem 5%;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .section-tag {
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--accent);
+      display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.8rem;
+    }
+    .section-tag::before { content: ''; width: 24px; height: 2px; background: var(--accent); display: block; }
+    .inside h2 {
+      font-family: 'Lora', serif; font-size: clamp(1.8rem, 3vw, 2.5rem);
+      color: var(--dark); margin-bottom: 0.8rem; line-height: 1.2;
+    }
+    .inside > p { font-size: 1rem; color: var(--text-light); max-width: 540px; line-height: 1.7; margin-bottom: 3rem; }
+
+    .items-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .item-card {
+      background: var(--warm-white); border: 1px solid var(--sand);
+      border-radius: 20px; padding: 2rem;
+      transition: all 0.25s;
+    }
+    .item-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 8px 30px rgba(43,31,22,0.08); }
+    .item-icon {
+      width: 52px; height: 52px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; margin-bottom: 1.2rem;
+    }
+    .item-icon.amber { background: rgba(194,119,58,0.12); }
+    .item-icon.green { background: var(--green-l); }
+    .item-icon.dark { background: rgba(43,31,22,0.08); }
+    .item-card h3 { font-family: 'Lora', serif; font-size: 1.15rem; color: var(--dark); margin-bottom: 0.5rem; }
+    .item-card p { font-size: 0.9rem; color: var(--text-light); line-height: 1.65; margin-bottom: 1rem; }
+    .item-includes { display: flex; flex-direction: column; gap: 0.4rem; }
+    .item-includes span {
+      font-size: 0.82rem; color: var(--text-light);
+      display: flex; align-items: flex-start; gap: 0.5rem;
+    }
+    .item-includes span::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+
+    /* WHAT YOU'LL LEARN */
+    .outcomes { background: var(--dark); padding: 6rem 5%; }
+    .outcomes-inner { max-width: 1000px; margin: 0 auto; }
+    .outcomes .section-tag { color: var(--accent-light); }
+    .outcomes .section-tag::before { background: var(--accent-light); }
+    .outcomes h2 { font-family: 'Lora', serif; font-size: clamp(1.8rem, 3vw, 2.4rem); color: white; margin-bottom: 3rem; line-height: 1.2; }
+    .outcomes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+    .outcome-item {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px; padding: 1.5rem;
+      transition: all 0.25s;
+    }
+    .outcome-item:hover { background: rgba(255,255,255,0.08); border-color: rgba(194,119,58,0.3); }
+    .outcome-num { font-family: 'Lora', serif; font-size: 2rem; color: var(--accent); font-weight: 600; margin-bottom: 0.5rem; }
+    .outcome-item h4 { font-size: 0.95rem; color: white; font-weight: 600; margin-bottom: 0.4rem; }
+    .outcome-item p { font-size: 0.85rem; color: var(--tan); line-height: 1.6; }
+
+    /* ABOUT */
+    .about-strip {
+      padding: 5rem 5%;
+      display: flex; align-items: center; gap: 4rem;
+      max-width: 1000px; margin: 0 auto;
+    }
+    .about-img {
+      width: 220px; height: 280px; border-radius: 20px; flex-shrink: 0;
+      object-fit: cover; object-position: top;
+      box-shadow: 0 12px 40px rgba(43,31,22,0.15);
+    }
+    .about-content .section-tag { margin-bottom: 0.8rem; }
+    .about-content h2 { font-family: 'Lora', serif; font-size: 1.8rem; color: var(--dark); margin-bottom: 1rem; line-height: 1.3; }
+    .about-content h2 em { font-style: italic; color: var(--accent); }
+    .about-content p { font-size: 0.95rem; color: var(--text-light); line-height: 1.75; margin-bottom: 0.8rem; }
+    .creds { display: flex; gap: 1.5rem; margin-top: 1.2rem; flex-wrap: wrap; }
+    .cred { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--text); font-weight: 500; }
+    .cred::before { content: ''; width: 8px; height: 8px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+
+    /* FAQ */
+    .faq { padding: 6rem 5%; background: var(--warm-white); }
+    .faq-inner { max-width: 700px; margin: 0 auto; }
+    .faq h2 { font-family: 'Lora', serif; font-size: 2rem; color: var(--dark); margin-bottom: 2.5rem; text-align: center; }
+    .faq-item { border-bottom: 1px solid var(--sand); padding: 1.4rem 0; }
+    .faq-q { font-weight: 600; font-size: 0.95rem; color: var(--dark); cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+    .faq-q::after { content: '+'; font-size: 1.3rem; color: var(--accent); font-weight: 300; }
+    .faq-a { font-size: 0.9rem; color: var(--text-light); line-height: 1.7; margin-top: 0.8rem; display: none; }
+    .faq-item.open .faq-q::after { content: '−'; }
+    .faq-item.open .faq-a { display: block; }
+
+    /* FINAL CTA */
+    .final-cta {
+      padding: 6rem 5%; text-align: center;
+      background: linear-gradient(135deg, var(--brown), var(--dark));
+      position: relative; overflow: hidden;
+    }
+    .final-cta::before {
+      content: ''; position: absolute; top: -80px; right: -80px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(194,119,58,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .final-cta h2 { font-family: 'Lora', serif; font-size: clamp(1.8rem, 3vw, 2.6rem); color: white; margin-bottom: 1rem; line-height: 1.2; }
+    .final-cta h2 em { font-style: italic; color: var(--accent-light); }
+    .final-cta p { font-size: 1rem; color: var(--tan); max-width: 480px; margin: 0 auto 2.5rem; line-height: 1.7; }
+    .final-cta .btn-buy { font-size: 1.05rem; padding: 1.1rem 3rem; }
+    .guarantee {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      margin-top: 1.5rem;
+      font-size: 0.82rem; color: rgba(201,184,163,0.7);
+    }
+    .guarantee::before { content: '🔒'; font-size: 1rem; }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark); padding: 2rem 5%;
+      text-align: center; color: var(--tan); font-size: 0.82rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    footer a { color: var(--accent-light); text-decoration: none; }
+
+    @media (max-width: 768px) {
+      .items-grid { grid-template-columns: 1fr; }
+      .outcomes-grid { grid-template-columns: 1fr; }
+      .about-strip { flex-direction: column; gap: 2rem; }
+      .about-img { width: 100%; height: 260px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">JL Smith <span>Financial</span></a>
+  <a href="index.html" class="nav-back">← Back to Home</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">Budget Mastery Toolkit</div>
+  <h1>The <em>Debt Free</em><br>Blueprint</h1>
+  <p class="hero-sub">
+    Everything you need to eliminate your debt, build real momentum, and take full control of your financial life — in one complete kit.
+  </p>
+  <div class="price-badge">
+    <span class="price-was">Value: $97</span>
+    <span class="price-now">$27</span>
+    <span class="price-label">One-time payment · Instant download</span>
+  </div>
+  <br>
+  <a href="https://gumroad.com/l/YOUR-PRODUCT-LINK" class="btn-buy" target="_blank">Get Instant Access — $27</a>
+  <p class="hero-note">📥 Instant download · Works on any device · PDF + Excel</p>
+</section>
+
+<!-- WHAT'S INSIDE -->
+<section class="inside">
+  <div class="section-tag">What's Included</div>
+  <h2>Everything in the toolkit</h2>
+  <p>Four tools built around one goal — getting you debt free faster than you thought possible.</p>
+
+  <div class="items-grid">
+    <div class="item-card">
+      <div class="item-icon amber">📘</div>
+      <h3>The Debt Free Blueprint (PDF)</h3>
+      <p>A complete 8-chapter guide walking you through every step of the debt payoff journey — from mindset to the final payment.</p>
+      <div class="item-includes">
+        <span>The Debt Snowball & Avalanche explained</span>
+        <span>Zero-based budgeting system</span>
+        <span>Weekly money habit templates</span>
+        <span>What to do after debt — building wealth</span>
+        <span>Justin's personal story and framework</span>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-icon green">📊</div>
+      <h3>Excel Budget Template (Upgraded)</h3>
+      <p>A professional, pre-built spreadsheet that makes zero-based budgeting simple. Just enter your numbers and it does the math.</p>
+      <div class="item-includes">
+        <span>Monthly budget tracker</span>
+        <span>Debt payoff calculator with timeline</span>
+        <span>Net worth tracker</span>
+        <span>Emergency fund progress bar</span>
+        <span>Works in Excel and Google Sheets</span>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-icon amber">✅</div>
+      <h3>Debt Free Master Checklist (PDF)</h3>
+      <p>A 5-phase, 30-point action checklist that takes you from overwhelmed to organized to completely debt free.</p>
+      <div class="item-includes">
+        <span>Phase 1: Get Clear on your numbers</span>
+        <span>Phase 2: Build your foundation</span>
+        <span>Phase 3: Build momentum</span>
+        <span>Phase 4: Accelerate your payoff</span>
+        <span>Phase 5: Cross the finish line</span>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-icon dark">🎥</div>
+      <h3>Video Walkthrough</h3>
+      <p>A personal video from Justin walking you through the budget template step-by-step so you're set up correctly from day one.</p>
+      <div class="item-includes">
+        <span>How to set up your first budget</span>
+        <span>How to order your debts for payoff</span>
+        <span>The one number to track weekly</span>
+        <span>Common mistakes to avoid</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUTCOMES -->
+<section class="outcomes">
+  <div class="outcomes-inner">
+    <div class="section-tag">What You'll Gain</div>
+    <h2>After working through this toolkit,<br>you'll know exactly how to:</h2>
+    <div class="outcomes-grid">
+      <div class="outcome-item">
+        <div class="outcome-num">01</div>
+        <h4>Face your numbers without fear</h4>
+        <p>Most people avoid their finances because looking feels overwhelming. This guide changes that — permanently.</p>
+      </div>
+      <div class="outcome-item">
+        <div class="outcome-num">02</div>
+        <h4>Build a budget that actually works</h4>
+        <p>Not a list of restrictions — a zero-based system that gives every dollar a purpose and a destination.</p>
+      </div>
+      <div class="outcome-item">
+        <div class="outcome-num">03</div>
+        <h4>Choose your debt payoff strategy</h4>
+        <p>Snowball or Avalanche — you'll know which one fits your personality and financial situation.</p>
+      </div>
+      <div class="outcome-item">
+        <div class="outcome-num">04</div>
+        <h4>Find extra money in your budget</h4>
+        <p>Even $50/month extra can cut years off your debt payoff. The guide shows you exactly where to find it.</p>
+      </div>
+      <div class="outcome-item">
+        <div class="outcome-num">05</div>
+        <h4>Build habits that stick long-term</h4>
+        <p>Weekly and monthly money routines that take under 30 minutes but compound into life-changing results.</p>
+      </div>
+      <div class="outcome-item">
+        <div class="outcome-num">06</div>
+        <h4>Know what to do after debt</h4>
+        <p>The Wealth Building Order — exactly where every dollar should go once your debt is gone for good.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section style="padding: 6rem 5%; background: var(--cream);">
+  <div class="about-strip">
+    <img src="https://static.wixstatic.com/media/4bb8a4_e069a0f23ebf4da19ebd35e73032ea51~mv2.jpeg" alt="Justin Lewis Smith" class="about-img"/>
+    <div class="about-content">
+      <div class="section-tag">Your Coach</div>
+      <h2>Built by someone who's<br><em>done it himself.</em></h2>
+      <p>
+        I'm Justin Lewis Smith — financial coach, and someone who once felt completely lost when it came to money. I've been where you are. Overwhelmed, behind, unsure where to start.
+      </p>
+      <p>
+        Through years of intentional work — budgeting, paying off every debt, building new habits — I grew my net worth by 600× and reached full financial independence. Everything in this toolkit is what actually worked for me and the clients I've coached.
+      </p>
+      <p>
+        This isn't theory. It's a proven system, packaged for $27 so price is never the reason you don't start.
+      </p>
+      <div class="creds">
+        <span class="cred">Debt Free</span>
+        <span class="cred">600× Net Worth Growth</span>
+        <span class="cred">Financially Independent</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="faq-inner">
+    <h2>Questions & Answers</h2>
+    <div class="faq-item">
+      <div class="faq-q">What format does the toolkit come in?</div>
+      <div class="faq-a">The guide and checklist are PDFs you can read on any device or print out. The budget template is an Excel file that also works in Google Sheets (free). The video walkthrough is a downloadable video file.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Is this useful if I only have a small amount of debt?</div>
+      <div class="faq-a">Absolutely. The system works whether you have $1,000 or $100,000 in debt. The principles — zero-based budgeting, the payoff order, the weekly habits — apply at every level. And getting out of a small debt fast builds the confidence to tackle bigger financial goals.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">I've tried budgeting before and it never sticks. Will this be different?</div>
+      <div class="faq-a">That's exactly who this is built for. Chapter 1 of the guide addresses why most budgets fail — and it's almost never lack of discipline. The system is designed to be flexible, goal-focused, and realistic so it works in real life, not just on paper.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Is there a refund policy?</div>
+      <div class="faq-a">Yes. If you complete the guide, use the template for 30 days, and feel it wasn't worth it — email <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7812141d0f110b0b38111b14170d1c561b1715">[email&#160;protected]</a> and I'll refund you in full. No questions asked. I'm confident you'll find value in it.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What if I want more personalized help?</div>
+      <div class="faq-a">The toolkit is a great starting point. If you want 1-on-1 coaching tailored to your exact situation, you can book a free 30-minute discovery call at jlsmithfinancial.github.io/jlsmith-financial. Many of my best coaching clients started with this toolkit.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta" id="buy">
+  <h2>Your debt free life<br>starts with <em>one decision.</em></h2>
+  <p>For $27 — less than one dinner out — you get a complete system built by someone who's lived it. The only thing between you and financial freedom is a plan.</p>
+  <a href="https://gumroad.com/l/YOUR-PRODUCT-LINK" class="btn-buy" target="_blank">Get the Toolkit — $27</a>
+  <div class="guarantee">30-day money-back guarantee · No questions asked</div>
+</section>
+
+<footer>
+  <p>© 2024 JL Smith Financial · <a href="index.html">Home</a> · <a href="https://calendly.com/jlsmithfinancial/30min" target="_blank">Book a Call</a> · <a href="/cdn-cgi/l/email-protection#e2888e87958b9191a28b818e8d9786cc818d8f">Contact</a></p>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts
